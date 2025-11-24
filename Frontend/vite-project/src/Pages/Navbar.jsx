@@ -13,12 +13,10 @@ function Navbar() {
 
         {/* Menu */}
         <ul className="flex gap-6 text-white cursor-pointer">
-          <li className="hover:text-gray-300">Home</li>
-          <li className="hover:text-gray-300">About</li>
-          <Link to="/signup">
-          <button className="bg-blue-500 text-white px-4 py-1 rounded-lg hover:bg-blue-600">
-  Sign Up
-</button>
+          <Link to='/'><li className="hover:text-gray-300">Home</li></Link>
+          <Link to='/about'><li className="hover:text-gray-300">About</li></Link>
+          
+          <Link to="/signup"><button className="bg-blue-500 text-white px-4 py-1 rounded-lg hover:bg-blue-600">Sign Up</button>
           </Link>
           
         </ul>
