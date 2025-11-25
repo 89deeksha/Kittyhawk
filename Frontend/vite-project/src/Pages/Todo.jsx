@@ -1,115 +1,59 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 function Todo() {
-  const [task, setTask] = useState("");
-  const [desc, setDesc] = useState("");
-  const [todos, setTodos] = useState([]);
+  const [title, setTitle]=useState("")
+  const[desc, setDesc]=useState("")
+  const [task, setTask]=useState([])
 
-  // Add task
-  const handleAdd = () => {
-    if (!task || !desc) {
-      alert("Please enter task & description");
-      return;
-    }
+  const submithandle=(e)=>{
+e.preventDefault()
+// console.log(title)
+// console.log(desc);
+setTask([...task,{title,desc}])
+// console.log(task)
+setDesc('')
+setTitle('')
 
-    const newTask = {
-      id: Date.now(),
-      task,
-      desc,
-      completed: false,
-    };
-
-    setTodos([...todos, newTask]);
-    setTask("");
-    setDesc("");
-  };
-
-  // Delete
-  const handleDelete = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
-
-  // Toggle complete
-  const handleToggle = (id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
-  };
-
+  }
+  
   return (
-    <div className="p-6 max-w-lg mx-auto bg-white shadow-md rounded">
-      <h1 className="text-3xl font-bold text-center mb-6">To-Do App</h1>
-
-      {/* INPUTS */}
-      <div className="flex flex-col gap-3">
-        <input
-          type="text"
-          placeholder="Task Title"
-          className="border p-2 rounded"
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
-        />
-
-        <input
-          type="text"
-          placeholder="Task Description"
-          className="border p-2 rounded"
-          value={desc}
-          onChange={(e) => setDesc(e.target.value)}
-        />
-
-        <button
-          onClick={handleAdd}
+    <div className='p-6 max-w-lg mx-auto bg-white shadow-md rounded'>
+        <h1 className='text-3xl font-bold text-center mb-4'>To-do App</h1>
+        <div >
+          <form onSubmit={submithandle} className='flex flex-col gap-3'>
+            <input type="text" className="border p-2 rounded" placeholder='Task Title' value={title} onChange={(e)=>setTitle(e.target.value)} />
+             <input type="text" className="border p-2 rounded" placeholder='Task Description' value={desc} onChange={(e)=>setDesc(e.target.value)} />
+            <button
+          
+          
           className="bg-blue-600 text-white py-2 rounded"
         >
+          
           Add Task
         </button>
-      </div>
-
-      {/* LIST */}
-      <div className="mt-6">
-        {todos.length === 0 ? (
-          <p className="text-center text-gray-500">No tasks added yet</p>
-        ) : (
-          todos.map((todo) => (
-            <div
-              key={todo.id}
-              className="border p-3 rounded mb-3 flex justify-between items-center"
-            >
-              <div>
-                <h2
-                  className={`text-xl font-semibold ${
-                    todo.completed ? "line-through text-gray-500" : ""
-                  }`}
-                >
-                  {todo.task}
-                </h2>
-                <p className="text-gray-600">{todo.desc}</p>
+          </form>
+         
+          {
+          task.length === 0 ? (
+            <h2 className='bg-gray-500 mt-3 p-5'>No task available</h2>
+          ) : (
+            task.map((t, index) => (
+              <div key={index} className='p-2 flex justify-between border-b'>
+                <div>
+                <h3 className='font-semibold'>{t.title}</h3>
+                <p className='text-sm text-gray-700'>{t.desc}</p>
+                </div>
+                <div className='flex gap-3'>
+                <button className='p-2 border bg-blue-400 text-white rounded-sm'>Done</button>
+                <button className='p-2 border bg-black text-white rounded-sm'>Delete</button>
+                </div>
               </div>
-
-              <div className="flex gap-2">
-                <button
-                  onClick={() => handleToggle(todo.id)}
-                  className="bg-green-500 text-white px-3 py-1 rounded"
-                >
-                  {todo.completed ? "Undo" : "Done"}
-                </button>
-
-                <button
-                  onClick={() => handleDelete(todo.id)}
-                  className="bg-red-500 text-white px-3 py-1 rounded"
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          ))
-        )}
-      </div>
+            ))
+          )
+        }
+        </div>
     </div>
-  );
+  )
 }
 
-export default Todo;
+export default Todo
