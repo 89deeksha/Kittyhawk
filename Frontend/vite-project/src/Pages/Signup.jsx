@@ -1,26 +1,42 @@
 import React, { useState } from 'react'
+import axios from "axios";
 
 function Signup() {
 
   const [credential, setCredential]=useState(true)
 
 const[formData, setFormData]=useState({
-  Name:"",
-  Email:"",
-  Password:""
+  name:"",
+  lastname:"",
+  password:""
 })
 
 
-  const handleSubmit=(e)=>{
+  const handleSubmit=async(e)=>{
 e.preventDefault()
-if(!formData || !formData.Name || !formData.Email || !formData.Password){
+if(!formData || !formData.name || !formData.lastname || !formData.password){
     alert("All fields are required")
   }
 console.log(formData)
+
+try{
+const res=await axios.post('http://localhost:8000/api/user/signup',{
+  name:formData.name,
+  lastname:formData.lastname,
+  password:formData.password
+})
+console.log(res.data)
+alert("Signup Successful!");
+}catch(error){
+console.error(error);
+  alert("Signup Failed!");
+}
+
+
 setFormData({
-      Name: "",
-      Email: "",
-      Password: ""
+      name: "",
+      lastname: "",
+      password: ""
     });
   }
   
@@ -37,22 +53,22 @@ setFormData({
         {credential?
         <>
               <label className='font-semibold'>Name:</label>
-              <input className='border rounded-sm py-1 px-3 w-full mb-3' type="text" placeholder='Enter name ' value={formData.Name} onChange={(e)=>setFormData({...formData,Name:e.target.value})} />
+              <input className='border rounded-sm py-1 px-3 w-full mb-3' type="text" placeholder='Enter name ' value={formData.name} onChange={(e)=>setFormData({...formData,name:e.target.value})} />
 
-              <label className='font-semibold'>Email:</label>
-              <input className='border rounded-sm py-1 px-3 w-full mb-3' type="email" placeholder='Enter email' value={formData.Email} onChange={(e)=>setFormData({...formData,Email:e.target.value})}/>
+              <label className='font-semibold'>lastname:</label>
+              <input className='border rounded-sm py-1 px-3 w-full mb-3' type="email" placeholder='Enter email' value={formData.lastname} onChange={(e)=>setFormData({...formData,lastname:e.target.value})}/>
 
               <label className='font-semibold'>Password:</label>
-              <input className='border rounded-sm py-1 px-3 w-full' type="password" placeholder='Enter password' value={formData.Password} onChange={(e)=>setFormData({...formData,Password:e.target.value})} />
+              <input className='border rounded-sm py-1 px-3 w-full' type="password" placeholder='Enter password' value={formData.password} onChange={(e)=>setFormData({...formData,password:e.target.value})} />
               <button type='submit' className='w-full mt-2 px-4 py-2 bg-blue-500 text-white rounded'>
                 Signup
               </button>
             </>:
         <>
-<label className='font-semibold'>Email:</label>
+<label className='font-semibold'>name:</label>
               <input className='border rounded-sm py-1 px-3 w-full mb-3' type="email" placeholder='Enter email' />
 
-              <label className='font-semibold'>Password:</label>
+              <label className='font-semibold'>password:</label>
               <input className='border rounded-sm py-1 px-3 w-full' type="password" placeholder='Enter password' />
               <button type="submit" className='w-full mt-2 px-4 py-2 bg-blue-500 text-white rounded'>
                 Signin
