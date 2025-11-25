@@ -1,24 +1,22 @@
 import React from 'react'
-import {Router,Routes, Route} from 'react-router-dom'
+import {Routes, Route} from 'react-router-dom'
 import './App.css'
 import Home from './Pages/Home'
 import Signup from './Pages/Signup'
+import Todo from './Pages/Todo'
 
 
 function App() {
   return (
     <div>
-      <Router>
-
-     
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/signup' element={<Signup/>}/>
+        <Route path='/todo' element={<Todo/>}/>
 
        
       
       </Routes>
-       </Router>
     </div>
   )
 }

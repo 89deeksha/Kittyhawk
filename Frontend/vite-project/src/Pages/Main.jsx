@@ -1,6 +1,7 @@
 import React from 'react'
 import img1 from '../assets/img1.png'
 import {anticipate, motion} from 'motion/react'
+import { Link } from 'react-router-dom'
 
 function Main() {
   return (
@@ -16,9 +17,9 @@ function Main() {
           Build fast, beautiful, and modern UI using React and Tailwind CSS.
         </motion.p>
 
-        <motion.button whileTap={{scale:0.8}} whileHover={{backgroundColor:'blue'}}  className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
-          Get Started
-        </motion.button>
+        <Link to='/todo'><motion.button  whileTap={{scale:0.8}} whileHover={{backgroundColor:'blue'}}  className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
+          To-do
+        </motion.button></Link>
       </div>
 
       {/* Right Side Image */}
