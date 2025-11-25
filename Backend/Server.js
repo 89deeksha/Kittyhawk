@@ -2,9 +2,11 @@ const dotenv=require('dotenv').config()
 const express= require('express')
 
 const app=express()
-const connection = require('./Configue/Connection');
+const connection = require('./Configue/Connection.js');
+
+
 const PORT=process.env.PORT || 4000
-const router=require('./Routes/userRoutes')
+const router=require('./Routes/userRoutes.js')
 
 const mongoose=require('mongoose')
 

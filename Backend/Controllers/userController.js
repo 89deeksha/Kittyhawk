@@ -34,13 +34,16 @@ res.status(500).send("you have err",err)
 //signin
 const loginuser=async(req,res)=>{
     const {name, password}=req.body
+    console.log(name, password)
     if(!name || !password){
         return res.status(400).send("All fields required")
     }
     try{
 const user=await model.findOne({name})
+console.log(user)
 if(!user ){
-    return res.status(404).send("user Email not found")
+    return res.status(404).send("user not found")
+    console.log("🔑 Comparing passwords:", password, "VS", user.password);
 }
 const isMatch=await bcrypt.compare(password, user.password)
 if(!isMatch){
