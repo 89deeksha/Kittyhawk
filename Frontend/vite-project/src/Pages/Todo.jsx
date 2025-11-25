@@ -6,9 +6,15 @@ function Todo() {
   const [task, setTask]=useState([])
 
   const submithandle=(e)=>{
+
 e.preventDefault()
 // console.log(title)
 // console.log(desc);
+
+if(!title || !desc){
+  alert("both fields are required")
+  return
+}
 setTask([...task,{title,desc}])
 // console.log(task)
 setDesc('')
@@ -54,8 +60,11 @@ setTitle('')
                 <button className='p-2 border bg-black text-white rounded-sm' onClick={() => deletehandle(index)}>Delete</button>
                 </div>
               </div>
+
+              
             ))
           )
+          
         }
         </div>
     </div>
