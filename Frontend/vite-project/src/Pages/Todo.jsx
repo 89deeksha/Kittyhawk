@@ -15,6 +15,11 @@ setDesc('')
 setTitle('')
 
   }
+  const deletehandle=(index)=>{
+    const copytask=[...task]
+    copytask.splice(index,1)
+    setTask(copytask)
+  }
   
   return (
     <div className='p-6 max-w-lg mx-auto bg-white shadow-md rounded'>
@@ -44,8 +49,9 @@ setTitle('')
                 <p className='text-sm text-gray-700'>{t.desc}</p>
                 </div>
                 <div className='flex gap-3'>
-                <button className='p-2 border bg-blue-400 text-white rounded-sm'>Done</button>
-                <button className='p-2 border bg-black text-white rounded-sm'>Delete</button>
+                <button className='p-2 border bg-blue-400 text-white rounded-sm'
+                >Done</button>
+                <button className='p-2 border bg-black text-white rounded-sm' onClick={() => deletehandle(index)}>Delete</button>
                 </div>
               </div>
             ))
