@@ -1,11 +1,13 @@
+const dotenv=require('dotenv').config()
 const express= require('express')
+
 const app=express()
 const connection = require('./Configue/Connection');
 const PORT=process.env.PORT || 4000
 const router=require('./Routes/userRoutes')
 
 const mongoose=require('mongoose')
-const dotenv=require('dotenv').config()
+
 
 
 
@@ -24,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 // app.get('/',(req,res)=>{
 // res.send("hi you are at home")
 // })
-app.use('/kitty',router)
+app.use('/api/user',router)
 
 
 // app.post('/signup',async(req,res)=>{
