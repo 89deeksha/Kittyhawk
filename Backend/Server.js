@@ -8,7 +8,7 @@ const connection = require('./Configue/Connection.js');
 
 const PORT=process.env.PORT || 4000
 const router=require('./Routes/userRoutes.js')
-
+const todoRoutes = require('./Routes/todoRoutes.js');
 const mongoose=require('mongoose')
 
 
@@ -23,6 +23,7 @@ app.use(cors({
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
+
 connection()
 
 
@@ -37,7 +38,7 @@ connection()
 // res.send("hi you are at home")
 // })
 app.use('/api/user',router)
-
+app.use("/api/todo", todoRoutes);
 
 // app.post('/signup',async(req,res)=>{
 //     //extract values from req
