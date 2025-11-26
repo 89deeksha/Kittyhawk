@@ -56,7 +56,7 @@ setFormData({
               <input className='border rounded-sm py-1 px-3 w-full mb-3' type="text" placeholder='Enter name ' value={formData.name} onChange={(e)=>setFormData({...formData,name:e.target.value})} />
 
               <label className='font-semibold'>lastname:</label>
-              <input className='border rounded-sm py-1 px-3 w-full mb-3' type="email" placeholder='Enter email' value={formData.lastname} onChange={(e)=>setFormData({...formData,lastname:e.target.value})}/>
+              <input className='border rounded-sm py-1 px-3 w-full mb-3' type="text" placeholder='Enter email' value={formData.lastname} onChange={(e)=>setFormData({...formData,lastname:e.target.value})}/>
 
               <label className='font-semibold'>Password:</label>
               <input className='border rounded-sm py-1 px-3 w-full' type="password" placeholder='Enter password' value={formData.password} onChange={(e)=>setFormData({...formData,password:e.target.value})} />

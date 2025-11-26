@@ -1,4 +1,5 @@
 const dotenv=require('dotenv').config()
+const cors = require("cors");
 const express= require('express')
 
 const app=express()
@@ -12,8 +13,16 @@ const mongoose=require('mongoose')
 
 
 
+app.use(cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
 
 
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 connection()
 
 
@@ -21,8 +30,7 @@ connection()
 //schema
 
 //middleware
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
+
 
 
 // app.get('/',(req,res)=>{
